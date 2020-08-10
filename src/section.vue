@@ -1,0 +1,524 @@
+<!-- This is a Vue.js single file component. -->
+<!-- Check the Vue.js doc here :  -->
+<!-- https://vuejs.org/v2/guide/ -->
+
+<!-- This is your HTML -->
+<template>
+    <div class="section-hello-world">
+        <!-- wwManager:start -->
+        <wwSectionEditMenu v-bind:sectionCtrl="sectionCtrl"></wwSectionEditMenu>
+        <!-- wwManager:end -->
+
+        <!-- This is the background of the section -->
+        <wwObject class="background" v-bind:ww-object="section.data.background" ww-category="background">
+        </wwObject>
+
+        <div class="content-container">
+            <!-- This is a simple WeWeb object which can be anything in the editor -->
+
+            <!-- This is another WeWeb object that we initiaze as an image -->
+            <div class="left-container">
+                <div v-for="(item, index) in section.data.contentList"
+                     v-bind:class="[item.mainImage ? 'show main ': '', 'header header-' + index]">
+                    <wwObject class="title"
+                              v-bind:ww-object="item.title"></wwObject>
+                    <wwObject class="subtitle" v-if="item.subtitle"
+                              v-bind:ww-object="item.subtitle"></wwObject>
+                </div>
+                <div class="icons-list">
+                    <div class="points">
+                        <wwObject v-for="(item, index) in section.data.contentList"
+                                  v-bind:class="[item.isActive ? 'current' : '', 'dot icon-' + index]"
+                                  v-bind:ww-object="item.icon"
+                                  v-on:click="currentSlide(index + 1)"></wwObject>
+                    </div>
+                    <wwObject class="icon" v-bind:ww-object="section.data.iconLeft"
+                              v-on:click="nextSlide(-1)"></wwObject>
+                    <wwObject class="icon" v-bind:ww-object="section.data.iconRight"
+                              v-on:click="nextSlide(1)"></wwObject>
+                </div>
+            </div>
+            <!-- This is a content block, a list of objects, it will add the little blue "plus" around the objects in the editor -->
+            <div class="right-container">
+                <wwObject v-for="(item, index) in section.data.contentList"
+                          v-bind:class="[item.isActive ? 'active' : '', item.mainImage ? 'main-image' : '', 'image all-images image-' + index]"
+                          v-bind:ww-object="item.image"></wwObject>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- This is your Javascript -->
+<!-- ✨ Here comes the magic ✨ -->
+<script>
+    export default {
+        name: 'custom-slider',
+        props: {
+            // The section controller object is passed. You can access it anytime
+            sectionCtrl: Object
+        },
+        data() {
+            return {
+                slideIndex: 0,
+                zIndex: 1
+            };
+        },
+        computed: {
+            // The section object contains all the info and data about the section
+            // Use it as you like !
+            section() {
+                return this.sectionCtrl.get();
+            }
+        },
+        created() {
+            // Initialize the data once the section is created in the DOM
+            this.init();
+            this.slideIndex = 0;
+        },
+        mounted() {
+            this.placeImages();
+            this.currentSlide(1);
+        },
+        methods: {
+            init() {
+                // Initialize section data
+                let needUpdate = false;
+
+                // We will only save the data in this.section.data
+                // So you need to put in there all the data of you WeWeb objects
+                this.section.data = this.section.data || {};
+
+                // Initialize WeWeb objects that are in the html template up there
+                if (!this.section.data.background) {
+                    this.section.data.background = wwLib.wwObject.getDefault({ type: 'ww-color' });
+                    needUpdate = true;
+                }
+
+                if (!this.section.data.title) {
+                    this.section.data.title = wwLib.wwObject.getDefault({
+                        type: 'ww-text',
+                        data: {
+                            text: {
+                                en: 'Peers amongst entrepreneurs'
+                            }
+                        }
+                    });
+                    needUpdate = true;
+                }
+
+                if (!this.section.data.iconLeft) {
+                    this.section.data.iconLeft = wwLib.wwObject.getDefault({
+                        type: 'ww-icon', data: {
+                            icon: 'fas fa-angle-left',
+                            style: {
+                                size: 24
+                            }
+                        }
+                    });
+                    needUpdate = true;
+                }
+                if (!this.section.data.iconRight) {
+                    this.section.data.iconRight = wwLib.wwObject.getDefault({
+                        type: 'ww-icon', data: {
+                            icon: 'fas fa-angle-right',
+                            style: {
+                                size: 24,
+                                paddingLeft: 20
+                            }
+                        }
+                    });
+                    needUpdate = true;
+                }
+
+                if (!this.section.data.contentList) {
+                    this.section.data.contentList = [
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/union-new.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.7
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        // color: '#343C38',
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Peers amongst entrepreneurs'
+                                    }
+                                }
+                            }),
+                            mainImage: true,
+                            isActive: true
+                        },
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.556,
+                                    position: { x: -12.2, y: 4.7 }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        color: '#343C38',
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'The world was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
+                                    }
+                                }
+                            }),
+                            isActive: false
+                        },
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.59,
+                                    position: { x: 8.7, y: 1.5 }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        // color: '#343C38',
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: '42CAP had a conviction in the Gig Economy space, which intrigued us.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Nicolas Rebout • CEO & Founder Shine'
+                                    }
+                                }
+                            }),
+                            isActive: false
+                        }
+                    ];
+                    needUpdate = true;
+                }
+
+                if (needUpdate) {
+                    this.sectionCtrl.update(this.section);
+                }
+            },
+
+            placeImages() {
+                // let images = document.getElementsByClassName('all-images');
+                // for (let i = 0; i < images.length; i++) {
+                //    let y, x;
+                //     x = Math.floor(Math.random() * 100) - 50;
+                //     y = Math.floor(Math.random() * 40) - 20;
+                //     images[i].style.cssText = `margin-right:${x}px;margin-top:${y}px;`;
+                // }
+
+            },
+            nextSlide(index) {
+                this.showSlides(this.slideIndex += index);
+            },
+            currentSlide(n) {
+                console.log(n);
+                this.showSlides(this.slideIndex = n);
+            },
+            showSlides(n) {
+                let i;
+                let slides = document.getElementsByClassName('all-images');
+                let dots = document.getElementsByClassName('dot');
+                let headers = document.getElementsByClassName('header');
+
+                if (n > slides.length) {
+                    this.slideIndex = 1;
+                }
+
+                if (n < 1) {
+                    this.slideIndex = slides.length;
+                }
+                for (i = 0; i < headers.length; i++) {
+                    if (headers[i].classList.contains('show')) {
+                        headers[i].classList.remove('show');
+                    }
+                }
+
+                for (i = 0; i < slides.length; i++) {
+                    if (slides[i].classList.contains('active')) {
+                        slides[i].classList.remove('active');
+                    }
+                }
+
+                for (i = 0; i < dots.length; i++) {
+                    if (dots[i].classList.contains('current')) {
+                        dots[i].classList.remove('current');
+                    }
+                }
+
+                for (i = 0; i < this.section.data.contentList.length; i++) {
+                    this.section.data.contentList[i].isActive = false;
+                }
+
+                slides[this.slideIndex - 1].classList.add('active');
+                slides[this.slideIndex - 1].style.zIndex = (this.zIndex++).toString();
+                dots[this.slideIndex - 1].classList.add('current');
+                headers[this.slideIndex - 1].classList.add('show');
+                this.section.data.contentList[this.slideIndex - 1].isActive = true;
+            },
+            // --------- EDITOR FUNCTIONS ---------
+            // All the codes between /* wwManager:start */ and /* wwManager:end */ are only for editor purposes
+            // So It won't in the published website!
+            /* wwManager:start */
+            add(list, options) {
+                try {
+                    list.splice(options.index, 0, options.wwObject);
+                    this.sectionCtrl.update(this.section);
+                } catch (error) {
+                    wwLib.wwLog.error('ERROR : ', error);
+                }
+            },
+            remove(list, options) {
+                try {
+                    list.splice(options.index, 1);
+                    this.sectionCtrl.update(this.section);
+                } catch (error) {
+                    wwLib.wwLog.error('ERROR : ', error);
+                }
+            }
+            /* wwManager:end */
+        }
+    };
+</script>
+
+<!-- This is your CSS -->
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add lang="scss" or others to use computed CSS -->
+<style lang="scss" scoped>
+    .section-hello-world {
+        &::v-deep {
+
+            .background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+
+            .content-container {
+                position: relative;
+                max-width: 1200px;
+                padding: 100px 0;
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+
+                .left-container {
+                    width: 100%;
+                    max-width: 450px;
+                    margin-top: 130px;
+                    /*position: relative;*/
+
+                    .header {
+                        display: none;
+
+                        &.show {
+                            display: block;
+
+                            &.main {
+                                margin-bottom: 32px;
+
+                                .title {
+                                    margin: 20px 0;
+                                    /*font-family: Merriweather;*/
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 48px;
+                                    line-height: 60px;
+                                    color: #343C38;
+                                }
+                            }
+                        }
+
+                        .title {
+                            /*font-family: Merriweather;*/
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 24px;
+                            line-height: 30px;
+                            color: #343C38;
+                        }
+
+                        .subtitle {
+                            margin-bottom: 30px;
+                            margin-top: 10px;
+                            /*font-family: Raleway;*/
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 18px;
+                            line-height: 45px;
+                            color: #343C38;
+                        }
+                    }
+
+                    .icons-list {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        /*position: absolute;*/
+                        /*left: 0;*/
+                        /*bottom: 0;*/
+
+                        .points {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+
+                            .dot {
+
+                                &.current {
+                                    .ww-icon {
+                                        div {
+                                            color: #67836F !important;
+                                        }
+                                    }
+                                }
+
+                                .ww-icon {
+                                    div {
+                                        margin: 0 5px;
+                                        color: rgba(52, 60, 56, 0.32) !important;
+                                    }
+                                }
+                            }
+                        }
+
+                        .icon {
+                            max-width: 40px;
+                        }
+
+                        .ww-icon {
+
+                            div {
+                                margin: 0 8px;
+                            }
+                        }
+                    }
+                }
+
+                .right-container {
+                    width: 100%;
+                    max-width: 700px;
+                    margin-left: 50px;
+                    position: relative;
+
+                    .main-image {
+                        border-radius: 0;
+
+                        .image {
+                            border-radius: 0;
+                        }
+                    }
+
+                    .image {
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        bottom: 0;
+
+                        /*
+                        NOW I SEND THE POSITION IN WWOBJECT PARAMETERS BUT YOU CAN USE THIS METHOD
+                           &.image-0 img.image {
+                                transform: translate(-62.2%, -45.3%) !important;
+                            }
+
+                            &.image-1 img.image {
+                                transform: translate(-40.4%, -49%) !important;
+                            }
+
+                            &.image-2 img.image {
+                              transform: translate(-45%, -51%) !important;
+
+                            }
+                         */
+
+                        &.active {
+                            transition: opacity, transform 200ms ease-out;
+                            animation-name: active;
+                            animation-duration: 3s;
+                        }
+
+                        @keyframes active {
+                            0% {
+                                transition: opacity, transform 200ms ease-out;
+                                transform: translate(0, 0);
+                                opacity: .4;
+                                z-index: -1;
+                            }
+                            50% {
+                                transition: opacity, transform 200ms ease-out;
+                                transform: translate(100px, 10px);
+                                opacity: 1;
+                            }
+
+                            100% {
+                                transition: opacity, transform 200ms ease-out;
+                                transform: translate(0, 0);
+                                opacity: 1;
+                                z-index: 1001;
+                            }
+                        }
+
+                        .format {
+                            background: transparent;
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+</style>

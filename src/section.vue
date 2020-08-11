@@ -146,7 +146,6 @@
                                     style: {
                                         size: 12,
                                         fontSize: 12,
-                                        // color: '#343C38',
                                         borderWidth: 0
                                     }
                                 }
@@ -348,7 +347,7 @@
             .content-container {
                 position: relative;
                 max-width: 1200px;
-                padding: 100px 0;
+                padding: 100px 20px;
                 margin: auto;
                 display: flex;
                 flex-direction: row;
@@ -357,7 +356,7 @@
                     width: 100%;
                     max-width: 450px;
                     margin-top: 130px;
-                    /*position: relative;*/
+                    position: relative;
 
                     .header {
                         display: none;
@@ -404,10 +403,7 @@
                     .icons-list {
                         display: flex;
                         flex-direction: row;
-                        align-items: center;
-                        /*position: absolute;*/
-                        /*left: 0;*/
-                        /*bottom: 0;*/
+                        align-items: flex-end;
 
                         .points {
                             display: flex;
@@ -466,7 +462,6 @@
                         top: 0;
                         right: 0;
                         left: 0;
-                        bottom: 0;
 
                         /*
                         NOW I SEND THE POSITION IN WWOBJECT PARAMETERS BUT YOU CAN USE THIS METHOD
@@ -521,4 +516,96 @@
         }
 
     }
+
+    @media only screen and (max-width: 768px) {
+        .section-hello-world {
+            &::v-deep {
+
+                .content-container {
+                    flex-direction: column-reverse;
+
+                    .left-container {
+                        position: unset;
+                        margin-top: 50px;
+
+                        .header {
+                            display: none;
+
+                            &.show {
+                                display: block;
+
+                                &.main {
+                                    margin-bottom: 32px;
+
+                                    .title {
+                                        margin: 20px 0;
+                                        font-size: 32px;
+                                        line-height: 40px;
+                                    }
+                                }
+                            }
+
+                            .title {
+                                margin: 20px 0;
+                                font-size: 20px;
+                                line-height: 30px;
+                                color: #343C38;
+                            }
+
+                            .subtitle {
+                                margin-bottom: 20px;
+                                margin-top: 0;
+                                font-size: 16px;
+                                line-height: 25px;
+                                color: #343C38;
+                            }
+                        }
+
+                    }
+
+                    .right-container {
+                        margin: 0;
+                        height: 400px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 640px) {
+        .section-hello-world {
+            &::v-deep {
+
+                .content-container {
+
+                    .left-container {
+                        margin-top: 20px
+                    }
+
+                    .right-container {
+                        height: 300px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .section-hello-world {
+            &::v-deep {
+
+                .content-container {
+
+                    .left-container {
+                        margin-top: 20px
+                    }
+
+                    .right-container {
+                        height: 250px;
+                    }
+                }
+            }
+        }
+    }
+
 </style>

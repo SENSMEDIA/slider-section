@@ -4,9 +4,9 @@
     "wewebPublic": "true",
     "repository": {
         "type": "git",
-        "url": "add"
+        "url": "https://github.com/donoaga/ww-slider-section"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
     "scripts": {
         "build": "weweb-build",

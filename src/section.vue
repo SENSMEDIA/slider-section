@@ -52,7 +52,7 @@
 <!-- ✨ Here comes the magic ✨ -->
 <script>
     export default {
-        name: 'custom-slider',
+        name: '__COMPONENT_NAME__',
         props: {
             // The section controller object is passed. You can access it anytime
             sectionCtrl: Object

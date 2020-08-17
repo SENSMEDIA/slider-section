@@ -20,7 +20,7 @@
             <div class="left-container">
                 <div v-for="(item, index) in section.data.contentList"
                      v-bind:class="[item.mainImage ? 'show main ': '', 'header header-' + index]">
-                    <wwObject class="title"
+                    <wwObject class="title" v-if="item.title"
                               v-bind:ww-object="item.title"></wwObject>
                     <wwObject class="subtitle" v-if="item.subtitle"
                               v-bind:ww-object="item.subtitle"></wwObject>
@@ -76,7 +76,6 @@
             this.slideIndex = 0;
         },
         mounted() {
-            this.placeImages();
             this.currentSlide(1);
         },
         methods: {
@@ -91,18 +90,6 @@
                 // Initialize WeWeb objects that are in the html template up there
                 if (!this.section.data.background) {
                     this.section.data.background = wwLib.wwObject.getDefault({ type: 'ww-color' });
-                    needUpdate = true;
-                }
-
-                if (!this.section.data.title) {
-                    this.section.data.title = wwLib.wwObject.getDefault({
-                        type: 'ww-text',
-                        data: {
-                            text: {
-                                en: 'Peers amongst entrepreneurs'
-                            }
-                        }
-                    });
                     needUpdate = true;
                 }
 
@@ -137,7 +124,12 @@
                                 type: 'ww-image',
                                 data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/union-new.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.7
+                                    zoom: 0.7,
+                                    style: {
+                                        minWidth: 640,
+                                        ratio: 1
+                                    }
+
                                 }
                             }),
                             icon: wwLib.wwObject.getDefault({
@@ -167,7 +159,12 @@
                                 data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.556,
-                                    position: { x: -12.2, y: 4.7 }
+                                    position: { x: -12.2, y: 4.7 },
+                                    style: {
+                                        // minWidth: 510,
+                                        ratio: 1,
+                                        borderRadius: 100
+                                    }
                                 }
                             }),
                             icon: wwLib.wwObject.getDefault({
@@ -204,8 +201,13 @@
                                 type: 'ww-image',
                                 data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.59,
-                                    position: { x: 8.7, y: 1.5 }
+                                    zoom: 0.6,
+                                    position: { x: 8.7, y: 1.5 },
+                                    style: {
+                                        borderRadius: 100,
+                                        ratio: 1,
+                                        minWidth: 540
+                                    }
                                 }
                             }),
                             icon: wwLib.wwObject.getDefault({
@@ -214,7 +216,6 @@
                                     style: {
                                         size: 12,
                                         fontSize: 12,
-                                        // color: '#343C38',
                                         borderWidth: 0
                                     }
                                 }
@@ -244,17 +245,6 @@
                 if (needUpdate) {
                     this.sectionCtrl.update(this.section);
                 }
-            },
-
-            placeImages() {
-                // let images = document.getElementsByClassName('all-images');
-                // for (let i = 0; i < images.length; i++) {
-                //    let y, x;
-                //     x = Math.floor(Math.random() * 100) - 50;
-                //     y = Math.floor(Math.random() * 40) - 20;
-                //     images[i].style.cssText = `margin-right:${x}px;margin-top:${y}px;`;
-                // }
-
             },
             nextSlide(index) {
                 this.showSlides(this.slideIndex += index);
@@ -301,30 +291,9 @@
                 slides[this.slideIndex - 1].classList.add('active');
                 slides[this.slideIndex - 1].style.zIndex = (this.zIndex++).toString();
                 dots[this.slideIndex - 1].classList.add('current');
-                headers[this.slideIndex - 1].classList.add('show');
+                headers[this.slideIndex].classList.add('show');
                 this.section.data.contentList[this.slideIndex - 1].isActive = true;
-            },
-            // --------- EDITOR FUNCTIONS ---------
-            // All the codes between /* wwManager:start */ and /* wwManager:end */ are only for editor purposes
-            // So It won't in the published website!
-            /* wwManager:start */
-            add(list, options) {
-                try {
-                    list.splice(options.index, 0, options.wwObject);
-                    this.sectionCtrl.update(this.section);
-                } catch (error) {
-                    wwLib.wwLog.error('ERROR : ', error);
-                }
-            },
-            remove(list, options) {
-                try {
-                    list.splice(options.index, 1);
-                    this.sectionCtrl.update(this.section);
-                } catch (error) {
-                    wwLib.wwLog.error('ERROR : ', error);
-                }
             }
-            /* wwManager:end */
         }
     };
 </script>
@@ -369,7 +338,6 @@
 
                                 .title {
                                     margin: 20px 0;
-                                    /*font-family: Merriweather;*/
                                     font-style: normal;
                                     font-weight: normal;
                                     font-size: 48px;
@@ -380,7 +348,6 @@
                         }
 
                         .title {
-                            /*font-family: Merriweather;*/
                             font-style: normal;
                             font-weight: normal;
                             font-size: 24px;
@@ -391,7 +358,6 @@
                         .subtitle {
                             margin-bottom: 30px;
                             margin-top: 10px;
-                            /*font-family: Raleway;*/
                             font-style: normal;
                             font-weight: normal;
                             font-size: 18px;
@@ -457,7 +423,6 @@
                     }
 
                     .image {
-                        border-radius: 50%;
                         position: absolute;
                         top: 0;
                         right: 0;
@@ -478,33 +443,6 @@
 
                             }
                          */
-
-                        &.active {
-                            transition: opacity, transform 200ms ease-out;
-                            animation-name: active;
-                            animation-duration: 3s;
-                        }
-
-                        @keyframes active {
-                            0% {
-                                transition: opacity, transform 200ms ease-out;
-                                transform: translate(0, 0);
-                                opacity: .4;
-                                z-index: -1;
-                            }
-                            50% {
-                                transition: opacity, transform 200ms ease-out;
-                                transform: translate(100px, 10px);
-                                opacity: 1;
-                            }
-
-                            100% {
-                                transition: opacity, transform 200ms ease-out;
-                                transform: translate(0, 0);
-                                opacity: 1;
-                                z-index: 1001;
-                            }
-                        }
 
                         .format {
                             background: transparent;

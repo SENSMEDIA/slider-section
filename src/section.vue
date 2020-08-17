@@ -40,7 +40,7 @@
             </div>
             <!-- This is a content block, a list of objects, it will add the little blue "plus" around the objects in the editor -->
             <div class="right-container">
-                <wwObject v-for="(item, index) in section.data.contentList"
+                <wwObject v-for="(item, index) in section.data.contentList" ww-default-ratio="80"
                           v-bind:class="[item.isActive ? 'active' : '', item.mainImage ? 'main-image' : '', 'image all-images image-' + index]"
                           v-bind:ww-object="item.image"></wwObject>
             </div>
@@ -126,7 +126,7 @@
                                     url: 'https://weweb.twic.pics/designs/436/sections/union-new.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.7,
                                     style: {
-                                        minWidth: 640,
+                                        // minWidth: 640,
                                         ratio: 1
                                     }
 
@@ -202,11 +202,11 @@
                                 data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.6,
-                                    position: { x: 8.7, y: 1.5 },
+                                    position: { x: 7.7, y: 1.5 },
                                     style: {
                                         borderRadius: 100,
                                         ratio: 1,
-                                        minWidth: 540
+                                        // minWidth: 540
                                     }
                                 }
                             }),

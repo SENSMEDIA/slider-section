@@ -291,7 +291,7 @@
                 slides[this.slideIndex - 1].classList.add('active');
                 slides[this.slideIndex - 1].style.zIndex = (this.zIndex++).toString();
                 dots[this.slideIndex - 1].classList.add('current');
-                headers[this.slideIndex].classList.add('show');
+                headers[this.slideIndex - 1].classList.add('show');
                 this.section.data.contentList[this.slideIndex - 1].isActive = true;
             }
         }

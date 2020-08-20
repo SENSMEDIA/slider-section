@@ -315,10 +315,11 @@
 
             .content-container {
                 position: relative;
-                max-width: 1200px;
+                /*max-width: 1200px;*/
                 padding: 100px 20px;
                 margin: auto;
                 display: flex;
+                justify-content: space-between;
                 flex-direction: row;
 
                 .left-container {
@@ -474,6 +475,8 @@
             &::v-deep {
 
                 .content-container {
+                    padding: 40px 20px;
+
                     flex-direction: column-reverse;
 
                     .left-container {

@@ -111,7 +111,7 @@
                         type: 'ww-icon', data: {
                             icon: 'fas fa-angle-left',
                             style: {
-                                size: 34
+                                size: 24
                             }
                         }
                     });
@@ -329,7 +329,7 @@
             .content-container {
                 position: relative;
                 /*max-width: 1200px;*/
-                padding: 40px 20px;
+                padding: 40px 10%;
                 margin: auto;
                 display: flex;
                 justify-content: space-between;
@@ -492,6 +492,7 @@
             &::v-deep {
 
                 .content-container {
+                    padding: 40px 20px;
 
                     .left-container {
                         margin-top: 60px

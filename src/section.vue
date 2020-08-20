@@ -45,6 +45,7 @@
                           v-bind:ww-object="item.image"></wwObject>
             </div>
         </div>
+        <wwObject class="icons" v-bind:ww-object="section.data.arrowIcon"></wwObject>
     </div>
 </template>
 
@@ -93,12 +94,24 @@
                     needUpdate = true;
                 }
 
+                if (!this.section.data.arrowIcon) {
+                    this.section.data.arrowIcon = wwLib.wwObject.getDefault({
+                        type: 'ww-icon', data: {
+                            icon: 'fas fa-arrow-down',
+                            style: {
+                                size: 24
+                            }
+                        }
+                    });
+                    needUpdate = true;
+                }
+
                 if (!this.section.data.iconLeft) {
                     this.section.data.iconLeft = wwLib.wwObject.getDefault({
                         type: 'ww-icon', data: {
                             icon: 'fas fa-angle-left',
                             style: {
-                                size: 24
+                                size: 34
                             }
                         }
                     });
@@ -316,7 +329,7 @@
             .content-container {
                 position: relative;
                 /*max-width: 1200px;*/
-                padding: 100px 20px;
+                padding: 40px 20px;
                 margin: auto;
                 display: flex;
                 justify-content: space-between;
@@ -413,6 +426,7 @@
                     width: 100%;
                     max-width: 700px;
                     margin-left: 50px;
+                    height: 500px;
                     position: relative;
 
                     .main-image {
@@ -465,6 +479,26 @@
                     .left-container {
                         margin-top: 60px
                     }
+                    .right-container {
+                        height: 250px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 850px) {
+        .section-hello-world {
+            &::v-deep {
+
+                .content-container {
+
+                    .left-container {
+                        margin-top: 60px
+                    }
+                    .right-container {
+                        height: 180px;
+                    }
                 }
             }
         }
@@ -475,7 +509,7 @@
             &::v-deep {
 
                 .content-container {
-                    padding: 40px 20px;
+                    padding: 30px 20px;
 
                     flex-direction: column-reverse;
 
@@ -520,7 +554,7 @@
 
                     .right-container {
                         margin: 0;
-                        height: 400px;
+                        height: 500px;
                     }
                 }
             }

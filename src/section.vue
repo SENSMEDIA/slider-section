@@ -61,7 +61,8 @@
         data() {
             return {
                 slideIndex: 0,
-                zIndex: 1
+                zIndex: 1,
+                timer: null
             };
         },
         computed: {
@@ -99,7 +100,9 @@
                         type: 'ww-icon', data: {
                             icon: 'fas fa-arrow-down',
                             style: {
-                                size: 24
+                                size: 34,
+                                borderWidth: 0
+
                             }
                         }
                     });
@@ -111,7 +114,7 @@
                         type: 'ww-icon', data: {
                             icon: 'fas fa-angle-left',
                             style: {
-                                size: 24
+                                size: 32
                             }
                         }
                     });
@@ -122,7 +125,7 @@
                         type: 'ww-icon', data: {
                             icon: 'fas fa-angle-right',
                             style: {
-                                size: 24,
+                                size: 32,
                                 paddingLeft: 20
                             }
                         }
@@ -218,7 +221,7 @@
                                     position: { x: 7.7, y: 1.5 },
                                     style: {
                                         borderRadius: 100,
-                                        ratio: 1,
+                                        ratio: 1
                                         // minWidth: 540
                                     }
                                 }
@@ -250,7 +253,136 @@
                                 }
                             }),
                             isActive: false
+                        },
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.556,
+                                    position: { x: -12.2, y: 4.7 },
+                                    style: {
+                                        // minWidth: 510,
+                                        ratio: 1,
+                                        borderRadius: 100
+                                    }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        color: '#343C38',
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'The world was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
+                                    }
+                                }
+                            }),
+                            isActive: false
+                        },
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.6,
+                                    position: { x: 7.7, y: 1.5 },
+                                    style: {
+                                        borderRadius: 100,
+                                        ratio: 1
+                                        // minWidth: 540
+                                    }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: '42CAP had a conviction in the Gig Economy space, which intrigued us.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Nicolas Rebout • CEO & Founder Shine'
+                                    }
+                                }
+                            }),
+                            isActive: false
+                        },
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.556,
+                                    position: { x: -12.2, y: 4.7 },
+                                    style: {
+                                        // minWidth: 510,
+                                        ratio: 1,
+                                        borderRadius: 100
+                                    }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        color: '#343C38',
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'The world was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
+                                    }
+                                }
+                            }),
+                            isActive: false
                         }
+
                     ];
                     needUpdate = true;
                 }
@@ -259,14 +391,27 @@
                     this.sectionCtrl.update(this.section);
                 }
             },
+            startTimer() {
+                this.timer = setInterval(() => {
+                    this.showSlides(this.slideIndex += 1);
+                }, 4000);
+            },
             nextSlide(index) {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                }
                 this.showSlides(this.slideIndex += index);
+                setTimeout(this.startTimer(), 1000);
             },
             currentSlide(n) {
-                console.log(n);
+                if (this.timer) {
+                    clearInterval(this.timer);
+                }
                 this.showSlides(this.slideIndex = n);
+                setTimeout(this.startTimer(), 1000);
             },
             showSlides(n) {
+                console.log('show slides');
                 let i;
                 let slides = document.getElementsByClassName('all-images');
                 let dots = document.getElementsByClassName('dot');
@@ -299,13 +444,13 @@
 
                 for (i = 0; i < this.section.data.contentList.length; i++) {
                     this.section.data.contentList[i].isActive = false;
+                    this.section.data.contentList[i].mainImage = false;
                 }
 
                 slides[this.slideIndex - 1].classList.add('active');
                 slides[this.slideIndex - 1].style.zIndex = (this.zIndex++).toString();
                 dots[this.slideIndex - 1].classList.add('current');
                 headers[this.slideIndex - 1].classList.add('show');
-                this.section.data.contentList[this.slideIndex - 1].isActive = true;
             }
         }
     };
@@ -479,6 +624,7 @@
                     .left-container {
                         margin-top: 60px
                     }
+
                     .right-container {
                         height: 250px;
                     }
@@ -497,6 +643,7 @@
                     .left-container {
                         margin-top: 60px
                     }
+
                     .right-container {
                         height: 180px;
                     }

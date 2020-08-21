@@ -198,7 +198,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'The world was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
                                     }
                                 }
                             }),
@@ -240,7 +240,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: '42CAP had a conviction in the Gig Economy space, which intrigued us.'
+                                        en: '42CAP had a conviction in the Gig Economy, which intrigued us.'
                                     }
                                 }
                             }),
@@ -283,7 +283,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'The world was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
                                     }
                                 }
                             }),
@@ -325,7 +325,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: '42CAP had a conviction in the Gig Economy space, which intrigued us.'
+                                        en: '42CAP had a conviction in the Gig Economy, which intrigued us.'
                                     }
                                 }
                             }),
@@ -368,7 +368,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'The world was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
                                     }
                                 }
                             }),

@@ -78,7 +78,7 @@
             this.slideIndex = 0;
         },
         mounted() {
-            this.currentSlide(1);
+            this.startTimer();
         },
         methods: {
             init() {
@@ -411,11 +411,12 @@
                 setTimeout(this.startTimer(), 1000);
             },
             showSlides(n) {
-                console.log('show slides');
                 let i;
                 let slides = document.getElementsByClassName('all-images');
                 let dots = document.getElementsByClassName('dot');
                 let headers = document.getElementsByClassName('header');
+
+                console.log(n);
 
                 if (n > slides.length) {
                     this.slideIndex = 1;

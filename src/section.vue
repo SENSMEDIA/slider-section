@@ -44,6 +44,13 @@
                           v-bind:class="[item.isActive ? 'active' : '', item.mainImage ? 'main-image' : '', 'image all-images image-' + index]"
                           v-bind:ww-object="item.image"></wwObject>
             </div>
+
+            <!-- wwManager:start -->
+            <div class="edit-custom-block">
+                <wwObject class="icon" v-bind:ww-object="section.data.removeIcon" v-on:click="removeSlide"></wwObject>
+                <wwObject class="icon" v-bind:ww-object="section.data.addIcon" v-on:click="addSlide"></wwObject>
+            </div>
+            <!-- wwManager:end -->
         </div>
         <wwObject class="icons" v-bind:ww-object="section.data.arrowIcon"></wwObject>
     </div>
@@ -127,6 +134,35 @@
                             style: {
                                 size: 32,
                                 paddingLeft: 20
+                            }
+                        }
+                    });
+                    needUpdate = true;
+                }
+
+                if (!this.section.data.addIcon) {
+                    this.section.data.addIcon = wwLib.wwObject.getDefault({
+                        type: 'ww-icon', data: {
+                            icon: 'fas fa-plus',
+                            style: {
+                                size: 32,
+                                paddingLeft: 20,
+                                borderWidth: 0,
+                                color: '#ef811a'
+                            }
+                        }
+                    });
+                    needUpdate = true;
+                }
+                if (!this.section.data.removeIcon) {
+                    this.section.data.removeIcon = wwLib.wwObject.getDefault({
+                        type: 'ww-icon', data: {
+                            icon: 'far fa-trash-alt',
+                            style: {
+                                size: 32,
+                                paddingLeft: 20,
+                                borderWidth: 0,
+                                color: '#ef811a'
                             }
                         }
                     });
@@ -401,14 +437,14 @@
                     clearInterval(this.timer);
                 }
                 this.showSlides(this.slideIndex += index);
-                setTimeout(this.startTimer(), 1000);
+                setTimeout(this.startTimer(), 1500);
             },
             currentSlide(n) {
                 if (this.timer) {
                     clearInterval(this.timer);
                 }
                 this.showSlides(this.slideIndex = n);
-                setTimeout(this.startTimer(), 1000);
+                setTimeout(this.startTimer(), 1500);
             },
             showSlides(n) {
                 let i;
@@ -452,7 +488,108 @@
                 slides[this.slideIndex - 1].style.zIndex = (this.zIndex++).toString();
                 dots[this.slideIndex - 1].classList.add('current');
                 headers[this.slideIndex - 1].classList.add('show');
+            },
+
+            /* wwManager:start */
+            add(list, options) {
+                list.splice(options.index, 0, options.wwObject);
+
+                this.sectionCtrl.update(this.section);
+            },
+            remove(list, options) {
+                list.splice(options.index, 1);
+
+                this.sectionCtrl.update(this.section);
+            },
+            getNewSlide() {
+                const position = {
+                    left: { x: 7.7, y: 1.5 },
+                    right: { x: -12.2, y: 4.7 }
+                };
+
+                const zoom = {
+                    right: 0.556,
+                    left: 0.6
+                };
+                const objectData = {
+                    zoom: 0.6,
+                    position: { x: 7.7, y: 1.5 }
+                };
+                if ((this.section.data.contentList.length - 2) % 2 !== 0) {
+                    objectData.position = position.left;
+                    objectData.zoom = zoom.left;
+                } else {
+                    objectData.position = position.right;
+                    objectData.zoom = zoom.right;
+                }
+
+                const defaultObj = {
+                    image: wwLib.wwObject.getDefault({
+                        type: 'ww-image',
+                        data: {
+                            url: 'https://cdn.weweb.app/public/images/no_image_selected.png',
+                            zoom: objectData.zoom,
+                            position: objectData.position,
+                            style: {
+                                ratio: 1,
+                                borderRadius: 100
+                            }
+                        }
+                    }),
+                    icon: wwLib.wwObject.getDefault({
+                        type: 'ww-icon', data: {
+                            icon: 'fas fa-circle',
+                            style: {
+                                size: 12,
+                                fontSize: 12,
+                                color: '#343C38',
+                                borderWidth: 0
+                            }
+                        }
+                    }),
+                    title: wwLib.wwObject.getDefault({
+                        type: 'ww-text',
+                        data: {
+                            text: {
+                                en: 'Default text'
+                            }
+                        }
+                    }),
+                    subtitle: wwLib.wwObject.getDefault({
+                        type: 'ww-text',
+                        data: {
+                            text: {
+                                en: 'Default text'
+                            }
+                        }
+                    }),
+                    isActive: false
+                };
+
+
+                const card = JSON.parse(JSON.stringify(defaultObj));
+                wwLib.wwUtils.changeUniqueIds(card);
+                return card;
+            },
+            addSlide() {
+                const newCard = this.getNewSlide();
+                const data = this.section.data.contentList.push(newCard);
+                console.log(this.section.data.contentList);
+                this.sectionCtrl.update(this.section);
+            },
+            removeSlide(index) {
+                if (!this.section.data.contentList.length) {
+                    return;
+                }
+                if (!index) {
+                    index = this.slideIndex - 1;
+                }
+
+                this.section.data.contentList.splice(index, 1);
+
+                this.sectionCtrl.update(this.section);
             }
+            /* wwManager:end */
         }
     };
 </script>
@@ -609,6 +746,18 @@
                             background: transparent;
                         }
 
+                    }
+                }
+
+                .edit-custom-block {
+                    display: flex;
+                    position: absolute;
+                    top: 15px;
+                    right: 20px;
+                    cursor: pointer;
+
+                    .icon {
+                        margin-left: 10px;
                     }
                 }
             }

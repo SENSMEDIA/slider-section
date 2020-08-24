@@ -452,8 +452,6 @@
                 let dots = document.getElementsByClassName('dot');
                 let headers = document.getElementsByClassName('header');
 
-                console.log(n);
-
                 if (n > slides.length) {
                     this.slideIndex = 1;
                 }
@@ -527,7 +525,7 @@
                     image: wwLib.wwObject.getDefault({
                         type: 'ww-image',
                         data: {
-                            url: 'https://cdn.weweb.app/public/images/no_image_selected.png',
+                            url: 'https://weweb.twic.pics/designs/436/sections/default.jpg?%27}twic=v1/quality=85/resize=1024',
                             zoom: objectData.zoom,
                             position: objectData.position,
                             style: {
@@ -573,8 +571,7 @@
             },
             addSlide() {
                 const newCard = this.getNewSlide();
-                const data = this.section.data.contentList.push(newCard);
-                console.log(this.section.data.contentList);
+                this.section.data.contentList.push(newCard);
                 this.sectionCtrl.update(this.section);
             },
             removeSlide(index) {
@@ -712,14 +709,6 @@
                     height: 500px;
                     position: relative;
 
-                    .main-image {
-                        border-radius: 0;
-
-                        .image {
-                            border-radius: 0;
-                        }
-                    }
-
                     .image {
                         position: absolute;
                         top: 0;
@@ -744,6 +733,21 @@
 
                         .format {
                             background: transparent;
+
+                            img {
+                                border-radius: 50%;
+                            }
+                        }
+
+                    }
+
+                    .main-image {
+                        border-radius: 0;
+
+                        .format {
+                            img {
+                                border-radius: 0;
+                            }
                         }
 
                     }

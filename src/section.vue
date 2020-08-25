@@ -86,6 +86,10 @@
         },
         mounted() {
             this.startTimer();
+            /* wwManager:start */
+            clearInterval(this.timer);
+            /* wwManager:end */
+
         },
         methods: {
             init() {

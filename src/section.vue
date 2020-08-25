@@ -86,10 +86,6 @@
         },
         mounted() {
             this.startTimer();
-            /* wwManager:start */
-            clearInterval(this.timer);
-            /* wwManager:end */
-
         },
         methods: {
             init() {
@@ -435,6 +431,9 @@
                 this.timer = setInterval(() => {
                     this.showSlides(this.slideIndex += 1);
                 }, 4000);
+                /* wwManager:start */
+                clearInterval(this.timer);
+                /* wwManager:end */
             },
             nextSlide(index) {
                 if (this.timer) {
@@ -600,6 +599,9 @@
 <!-- Add lang="scss" or others to use computed CSS -->
 <style lang="scss" scoped>
     .section-hello-world {
+        position: relative;
+        height: calc(100vh - 100px);
+
         &::v-deep {
 
             .background {
@@ -611,6 +613,7 @@
             }
 
             .content-container {
+                width: 100%;
                 position: relative;
                 /*max-width: 1200px;*/
                 padding: 40px 10%;
@@ -769,12 +772,20 @@
                     }
                 }
             }
+
+            .icons {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
     }
 
     @media only screen and (max-width: 1100px) {
         .section-hello-world {
+            height: auto;
             &::v-deep {
 
                 .content-container {
@@ -786,6 +797,10 @@
                     .right-container {
                         height: 250px;
                     }
+                }
+
+                .icons {
+                    position: relative;
                 }
             }
         }

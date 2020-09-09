@@ -175,13 +175,12 @@
                             image: wwLib.wwObject.getDefault({
                                 type: 'ww-image',
                                 data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/union-new.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.7,
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Group_12.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.87,
                                     style: {
                                         // minWidth: 640,
                                         ratio: 1
                                     }
-
                                 }
                             }),
                             icon: wwLib.wwObject.getDefault({
@@ -209,9 +208,51 @@
                             image: wwLib.wwObject.getDefault({
                                 type: 'ww-image',
                                 data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.7,
+                                    position: { x: 0, y: 0 },
+                                    style: {
+                                        borderRadius: 100,
+                                        ratio: 1
+                                        // minWidth: 540
+                                    }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: '42CAP had a conviction in the Gig Economy, which intrigued us.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Nicolas Rebout • CEO & Founder Shine'
+                                    }
+                                }
+                            }),
+                            isActive: false
+                        },
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.556,
-                                    position: { x: -12.2, y: 4.7 },
+                                    zoom: 0.63,
+                                    position: { x: -7.1, y: 11.4 },
                                     style: {
                                         // minWidth: 510,
                                         ratio: 1,
@@ -253,50 +294,8 @@
                                 type: 'ww-image',
                                 data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.6,
-                                    position: { x: 7.7, y: 1.5 },
-                                    style: {
-                                        borderRadius: 100,
-                                        ratio: 1
-                                        // minWidth: 540
-                                    }
-                                }
-                            }),
-                            icon: wwLib.wwObject.getDefault({
-                                type: 'ww-icon', data: {
-                                    icon: 'fas fa-circle',
-                                    style: {
-                                        size: 12,
-                                        fontSize: 12,
-                                        borderWidth: 0
-                                    }
-                                }
-                            }),
-                            title: wwLib.wwObject.getDefault({
-                                type: 'ww-text',
-                                data: {
-                                    text: {
-                                        en: '42CAP had a conviction in the Gig Economy, which intrigued us.'
-                                    }
-                                }
-                            }),
-                            subtitle: wwLib.wwObject.getDefault({
-                                type: 'ww-text',
-                                data: {
-                                    text: {
-                                        en: 'Nicolas Rebout • CEO & Founder Shine'
-                                    }
-                                }
-                            }),
-                            isActive: false
-                        },
-                        {
-                            image: wwLib.wwObject.getDefault({
-                                type: 'ww-image',
-                                data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.556,
-                                    position: { x: -12.2, y: 4.7 },
+                                    zoom: 0.63,
+                                    position: { x: -19.1, y: -0.9 },
                                     style: {
                                         // minWidth: 510,
                                         ratio: 1,
@@ -339,7 +338,7 @@
                                 data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.6,
-                                    position: { x: 7.7, y: 1.5 },
+                                    position: { x: -14, y: -14.4 },
                                     style: {
                                         borderRadius: 100,
                                         ratio: 1
@@ -380,8 +379,8 @@
                                 type: 'ww-image',
                                 data: {
                                     url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.556,
-                                    position: { x: -12.2, y: 4.7 },
+                                    zoom: 0.63,
+                                    position: { x: 12.8, y: -11.5 },
                                     style: {
                                         // minWidth: 510,
                                         ratio: 1,
@@ -418,7 +417,6 @@
                             }),
                             isActive: false
                         }
-
                     ];
                     needUpdate = true;
                 }
@@ -513,8 +511,10 @@
                     left: 0.6
                 };
                 const objectData = {
-                    zoom: 0.6,
-                    position: { x: 7.7, y: 1.5 }
+                    slide5: {
+                        zoom: 0.6,
+                        position: { x: 7.7, y: 1.5 }
+                    }
                 };
                 if ((this.section.data.contentList.length - 2) % 2 !== 0) {
                     objectData.position = position.left;
@@ -621,6 +621,7 @@
                 display: flex;
                 justify-content: space-between;
                 flex-direction: row;
+                align-items: center;
 
                 .left-container {
                     width: 100%;
@@ -718,9 +719,10 @@
 
                     .image {
                         position: absolute;
-                        top: 0;
                         right: 0;
                         left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
 
                         /*
                         NOW I SEND THE POSITION IN WWOBJECT PARAMETERS BUT YOU CAN USE THIS METHOD
@@ -786,6 +788,7 @@
     @media only screen and (max-width: 1100px) {
         .section-hello-world {
             height: auto;
+
             &::v-deep {
 
                 .content-container {
@@ -893,7 +896,7 @@
                     }
 
                     .right-container {
-                        height: 340px;
+                        height: 450px;
                     }
                 }
             }

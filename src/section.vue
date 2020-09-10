@@ -626,7 +626,6 @@
                 .left-container {
                     width: 100%;
                     max-width: 450px;
-                    margin-top: 130px;
                     position: relative;
 
                     .header {
@@ -714,7 +713,7 @@
                     width: 100%;
                     max-width: 700px;
                     margin-left: 50px;
-                    height: 500px;
+                    height: 600px;
                     position: relative;
 
                     .image {
@@ -816,12 +815,9 @@
                 .content-container {
                     padding: 40px 20px;
 
-                    .left-container {
-                        margin-top: 60px
-                    }
 
                     .right-container {
-                        height: 180px;
+                        height: 280px;
                     }
                 }
             }
@@ -904,6 +900,24 @@
     }
 
     @media only screen and (max-width: 500px) {
+        .section-hello-world {
+            &::v-deep {
+
+                .content-container {
+
+                    .left-container {
+                        margin-top: 20px
+                    }
+
+                    .right-container {
+                        height: 300px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
         .section-hello-world {
             &::v-deep {
 

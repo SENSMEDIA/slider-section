@@ -208,49 +208,7 @@
                             image: wwLib.wwObject.getDefault({
                                 type: 'ww-image',
                                 data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.7,
-                                    position: { x: 0, y: 0 },
-                                    style: {
-                                        borderRadius: 100,
-                                        ratio: 1
-                                        // minWidth: 540
-                                    }
-                                }
-                            }),
-                            icon: wwLib.wwObject.getDefault({
-                                type: 'ww-icon', data: {
-                                    icon: 'fas fa-circle',
-                                    style: {
-                                        size: 12,
-                                        fontSize: 12,
-                                        borderWidth: 0
-                                    }
-                                }
-                            }),
-                            title: wwLib.wwObject.getDefault({
-                                type: 'ww-text',
-                                data: {
-                                    text: {
-                                        en: '42CAP had a conviction in the Gig Economy, which intrigued us.'
-                                    }
-                                }
-                            }),
-                            subtitle: wwLib.wwObject.getDefault({
-                                type: 'ww-text',
-                                data: {
-                                    text: {
-                                        en: 'Nicolas Rebout • CEO & Founder Shine'
-                                    }
-                                }
-                            }),
-                            isActive: false
-                        },
-                        {
-                            image: wwLib.wwObject.getDefault({
-                                type: 'ww-image',
-                                data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_8.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.63,
                                     position: { x: -7.1, y: 11.4 },
                                     style: {
@@ -293,7 +251,7 @@
                             image: wwLib.wwObject.getDefault({
                                 type: 'ww-image',
                                 data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.63,
                                     position: { x: -19.1, y: -0.9 },
                                     style: {
@@ -336,7 +294,7 @@
                             image: wwLib.wwObject.getDefault({
                                 type: 'ww-image',
                                 data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_5.png?%27}twic=v1/quality=85/resize=1024',
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_4.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.6,
                                     position: { x: -14, y: -14.4 },
                                     style: {
@@ -378,7 +336,7 @@
                             image: wwLib.wwObject.getDefault({
                                 type: 'ww-image',
                                 data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_6.png?%27}twic=v1/quality=85/resize=1024',
                                     zoom: 0.63,
                                     position: { x: 12.8, y: -11.5 },
                                     style: {
@@ -416,7 +374,91 @@
                                 }
                             }),
                             isActive: false
-                        }
+                        },{
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_7.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.58,
+                                    position: { x: 24.9, y: 6.9 },
+                                    style: {
+                                        // minWidth: 510,
+                                        ratio: 1,
+                                        borderRadius: 100
+                                    }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        color: '#343C38',
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
+                                    }
+                                }
+                            }),
+                            isActive: false
+                        },
+                        {
+                            image: wwLib.wwObject.getDefault({
+                                type: 'ww-image',
+                                data: {
+                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_3.png?%27}twic=v1/quality=85/resize=1024',
+                                    zoom: 0.7,
+                                    position: { x: 0, y: 0 },
+                                    style: {
+                                        borderRadius: 100,
+                                        ratio: 1
+                                        // minWidth: 540
+                                    }
+                                }
+                            }),
+                            icon: wwLib.wwObject.getDefault({
+                                type: 'ww-icon', data: {
+                                    icon: 'fas fa-circle',
+                                    style: {
+                                        size: 12,
+                                        fontSize: 12,
+                                        borderWidth: 0
+                                    }
+                                }
+                            }),
+                            title: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: '42CAP had a conviction in the Gig Economy, which intrigued us.'
+                                    }
+                                }
+                            }),
+                            subtitle: wwLib.wwObject.getDefault({
+                                type: 'ww-text',
+                                data: {
+                                    text: {
+                                        en: 'Nicolas Rebout • CEO & Founder Shine'
+                                    }
+                                }
+                            }),
+                            isActive: false
+                        },
                     ];
                     needUpdate = true;
                 }

@@ -48,7 +48,7 @@
                 <div class="icon-edit" v-on:click="removeSlide">
                     <font-awesome-icon class="awesome-icon" icon="trash"/>
                 </div>
-                <div class="icon-edit" v-on:click="addSlide">
+                <div class="icon-edit" v-on:mousedown="addSlide">
                     <font-awesome-icon class="awesome-icon" icon="plus"/>
                 </div>
             </div>
@@ -606,7 +606,6 @@
                 this.sectionCtrl.update(this.section);
             },
             removeSlide(index) {
-                console.log('add SLide');
                 if (!this.section.data.contentList.length) {
                     return;
                 }
@@ -656,6 +655,7 @@
                     width: 100%;
                     max-width: 450px;
                     position: relative;
+                    min-height: 200px;
 
                     .header {
                         display: none;
@@ -700,6 +700,8 @@
                         display: flex;
                         flex-direction: row;
                         align-items: flex-end;
+                        position: absolute;
+                        bottom: 0;
 
                         .points {
                             display: flex;
@@ -798,6 +800,7 @@
                     cursor: pointer;
 
                     .icon-edit {
+                        pointer-events: all;
 
                         .awesome-icon {
                             color: #ef811a;
@@ -827,7 +830,33 @@
                 .content-container {
 
                     .left-container {
-                        margin-top: 60px
+                        min-height: 180px;
+                        margin-top: 30px;
+
+
+                        .header {
+
+                            &.show {
+
+                                &.main {
+
+                                    .title {
+                                        font-size: 36px;
+                                        line-height: 50px;
+                                    }
+                                }
+                            }
+
+                            .title {
+                                font-size: 20px;
+                                line-height: 26px;
+                            }
+
+                            .subtitle {
+                                font-size: 16px;
+                                line-height: 36px;
+                            }
+                        }
                     }
 
                     .right-container {
@@ -848,6 +877,7 @@
 
                 .content-container {
                     padding: 40px 20px;
+                    min-height: 200px;
 
 
                     .right-container {
@@ -870,7 +900,7 @@
                     .left-container {
                         position: unset;
                         margin-top: 50px;
-
+min-height: 150px;
                         .header {
                             display: none;
 
@@ -922,7 +952,8 @@
                 .content-container {
 
                     .left-container {
-                        margin-top: 20px
+                        margin-top: 20px;
+                        min-height: 130px;
                     }
 
                     .right-container {

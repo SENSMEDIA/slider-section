@@ -1,7 +1,6 @@
 <!-- This is a Vue.js single file component. -->
 <!-- Check the Vue.js doc here :  -->
 <!-- https://vuejs.org/v2/guide/ -->
-
 <!-- This is your HTML -->
 <template>
     <div class="section-hello-world">
@@ -44,13 +43,17 @@
                           v-bind:class="[item.isActive ? 'active' : '', item.mainImage ? 'main-image' : '', 'image all-images image-' + index]"
                           v-bind:ww-object="item.image"></wwObject>
             </div>
-
             <!-- wwManager:start -->
             <div class="edit-custom-block">
-                <wwObject class="icon" v-bind:ww-object="section.data.removeIcon" v-on:click="removeSlide"></wwObject>
-                <wwObject class="icon" v-bind:ww-object="section.data.addIcon" v-on:click="addSlide"></wwObject>
+                <div class="icon-edit" v-on:click="removeSlide">
+                    <font-awesome-icon class="awesome-icon" icon="trash"/>
+                </div>
+                <div class="icon-edit" v-on:click="addSlide">
+                    <font-awesome-icon class="awesome-icon" icon="plus"/>
+                </div>
             </div>
             <!-- wwManager:end -->
+
         </div>
         <wwObject class="icons" v-bind:ww-object="section.data.arrowIcon"></wwObject>
     </div>
@@ -59,6 +62,18 @@
 <!-- This is your Javascript -->
 <!-- ✨ Here comes the magic ✨ -->
 <script>
+
+    import Vue from 'vue';
+    import { library } from '@fortawesome/fontawesome-svg-core';
+    import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+    library.add(faTrash, faPlus);
+
+    Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+    Vue.config.productionTip = false;
+
     export default {
         name: '__COMPONENT_NAME__',
         props: {
@@ -134,35 +149,6 @@
                             style: {
                                 size: 32,
                                 paddingLeft: 20
-                            }
-                        }
-                    });
-                    needUpdate = true;
-                }
-
-                if (!this.section.data.addIcon) {
-                    this.section.data.addIcon = wwLib.wwObject.getDefault({
-                        type: 'ww-icon', data: {
-                            icon: 'fas fa-plus',
-                            style: {
-                                size: 32,
-                                paddingLeft: 20,
-                                borderWidth: 0,
-                                color: '#ef811a'
-                            }
-                        }
-                    });
-                    needUpdate = true;
-                }
-                if (!this.section.data.removeIcon) {
-                    this.section.data.removeIcon = wwLib.wwObject.getDefault({
-                        type: 'ww-icon', data: {
-                            icon: 'far fa-trash-alt',
-                            style: {
-                                size: 32,
-                                paddingLeft: 20,
-                                borderWidth: 0,
-                                color: '#ef811a'
                             }
                         }
                     });
@@ -374,7 +360,7 @@
                                 }
                             }),
                             isActive: false
-                        },{
+                        }, {
                             image: wwLib.wwObject.getDefault({
                                 type: 'ww-image',
                                 data: {
@@ -458,7 +444,7 @@
                                 }
                             }),
                             isActive: false
-                        },
+                        }
                     ];
                     needUpdate = true;
                 }
@@ -620,6 +606,7 @@
                 this.sectionCtrl.update(this.section);
             },
             removeSlide(index) {
+                console.log('add SLide');
                 if (!this.section.data.contentList.length) {
                     return;
                 }
@@ -810,8 +797,13 @@
                     right: 20px;
                     cursor: pointer;
 
-                    .icon {
-                        margin-left: 10px;
+                    .icon-edit {
+
+                        .awesome-icon {
+                            color: #ef811a;
+                            font-size: 24px;
+                            margin-left: 25px;
+                        }
                     }
                 }
             }

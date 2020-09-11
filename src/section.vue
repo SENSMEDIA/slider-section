@@ -45,7 +45,7 @@
             </div>
             <!-- wwManager:start -->
             <div class="edit-custom-block">
-                <div class="icon-edit" v-on:click="removeSlide">
+                <div class="icon-edit" v-on:click="removeSlide(null)">
                     <font-awesome-icon class="awesome-icon" icon="trash"/>
                 </div>
                 <div class="icon-edit" v-on:mousedown="addSlide">
@@ -219,7 +219,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                        en: 'Thomas’ strategic perspective on product roadmap anbd Alex’ support on go-to-market made the difference'
                                     }
                                 }
                             }),
@@ -227,7 +227,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
+                                        en: 'Founder Adverity'
                                     }
                                 }
                             }),
@@ -262,7 +262,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                        en: 'Early on we really wanted a seed stage focussed SaaS VC with entrepreneurial background. Alex and Thomas had built one of the largest independent SaaS companies in Europe and were our first choice.'
                                     }
                                 }
                             }),
@@ -270,7 +270,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
+                                        en: 'Founder Scoutbee'
                                     }
                                 }
                             }),
@@ -304,7 +304,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: '42CAP had a conviction in the Gig Economy, which intrigued us.'
+                                        en: 'Alex was my core advisor as an entrepreneur for structuring and negotiating my Series A'
                                     }
                                 }
                             }),
@@ -312,7 +312,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'Nicolas Rebout • CEO & Founder Shine'
+                                        en: 'Founder Packlink'
                                     }
                                 }
                             }),
@@ -347,7 +347,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
+                                        en: '42CAP is the ideal partner to build a global SaaS business'
                                     }
                                 }
                             }),
@@ -355,49 +355,7 @@
                                 type: 'ww-text',
                                 data: {
                                     text: {
-                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
-                                    }
-                                }
-                            }),
-                            isActive: false
-                        }, {
-                            image: wwLib.wwObject.getDefault({
-                                type: 'ww-image',
-                                data: {
-                                    url: 'https://weweb.twic.pics/designs/436/sections/Ellipse_7.png?%27}twic=v1/quality=85/resize=1024',
-                                    zoom: 0.58,
-                                    position: { x: 24.9, y: 6.9 },
-                                    style: {
-                                        // minWidth: 510,
-                                        ratio: 1,
-                                        borderRadius: 100
-                                    }
-                                }
-                            }),
-                            icon: wwLib.wwObject.getDefault({
-                                type: 'ww-icon', data: {
-                                    icon: 'fas fa-circle',
-                                    style: {
-                                        size: 12,
-                                        fontSize: 12,
-                                        color: '#343C38',
-                                        borderWidth: 0
-                                    }
-                                }
-                            }),
-                            title: wwLib.wwObject.getDefault({
-                                type: 'ww-text',
-                                data: {
-                                    text: {
-                                        en: 'The round was over subscribed, but I wanted to have 42CAP due to their entrepreneurial experience.'
-                                    }
-                                }
-                            }),
-                            subtitle: wwLib.wwObject.getDefault({
-                                type: 'ww-text',
-                                data: {
-                                    text: {
-                                        en: 'Inigo Juantegui • CEO & Founder OnTruck'
+                                        en: 'Founder Katana'
                                     }
                                 }
                             }),

@@ -657,7 +657,6 @@
                     .icons-list {
                         display: flex;
                         flex-direction: row;
-                        align-items: flex-end;
                         position: absolute;
                         bottom: 0;
 

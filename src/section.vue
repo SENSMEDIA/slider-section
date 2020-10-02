@@ -11,7 +11,7 @@
         <!-- This is the background of the section -->
         <wwObject class="background" :ww-object="section.data.background" ww-category="background"> </wwObject>
 
-        <v-touch @swipeleft="previousSlide" @swiperight="nextSlide" class="content-container">
+        <div class="content-container">
             <!-- This is a simple WeWeb object which can be anything in the editor -->
 
             <!-- This is another WeWeb object that we initiaze as an image -->
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <!-- wwManager:end -->
-        </v-touch>
+        </div>
         <wwObject class="icons" :ww-object="section.data.arrowIcon"></wwObject>
     </div>
 </template>
@@ -65,9 +65,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faTrash, faPlus);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-
-const VueTouch = require('vue-touch');
-Vue.use(VueTouch, { name: 'v-touch' });
 
 export default {
     name: '__COMPONENT_NAME__',

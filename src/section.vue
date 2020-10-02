@@ -434,7 +434,7 @@ export default {
             }
         },
         startTimer() {
-            if (wwLib.manager) {
+            if (wwLib.manager || window.__WW_IS_PRERENDER__) {
                 return;
             }
             clearTimeout(this.timer);

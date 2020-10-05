@@ -50,7 +50,9 @@
             </div>
             <!-- wwManager:end -->
         </div>
-        <wwObject class="icons" :ww-object="section.data.arrowIcon"></wwObject>
+        <wwLayoutColumn tag="div" ww-default="ww-text" :ww-list="section.data.bottomList" @ww-add="add(section.data.bottomList, $event)" @ww-remove="remove(section.data.bottomList, $event)">
+            <wwObject tag="div" v-for="object in section.data.bottomList" :key="object.uniqueId" :ww-object="object"></wwObject>
+        </wwLayoutColumn>
     </div>
 </template>
 
@@ -102,22 +104,9 @@ export default {
             this.section.data = this.section.data || {};
 
             // Initialize WeWeb objects that are in the html template up there
+
             if (!this.section.data.background) {
                 this.section.data.background = wwLib.wwObject.getDefault({ type: 'ww-color' });
-                needUpdate = true;
-            }
-
-            if (!this.section.data.arrowIcon) {
-                this.section.data.arrowIcon = wwLib.wwObject.getDefault({
-                    type: 'ww-icon',
-                    data: {
-                        icon: 'fas fa-arrow-down',
-                        style: {
-                            size: 34,
-                            borderWidth: 0
-                        }
-                    }
-                });
                 needUpdate = true;
             }
 
@@ -426,6 +415,28 @@ export default {
                 needUpdate = true;
             }
 
+            if (this.section.data.arrowIcon) {
+                this.section.data.bottomList = [_.cloneDeep(this.section.data.arrowIcon)];
+                delete this.section.data.arrowIcon;
+                needUpdate = true;
+            }
+
+            if (!this.section.data.bottomList) {
+                this.section.data.bottomList = [
+                    wwLib.wwObject.getDefault({
+                        type: 'ww-icon',
+                        data: {
+                            icon: 'fas fa-arrow-down',
+                            style: {
+                                size: 34,
+                                borderWidth: 0
+                            }
+                        }
+                    })
+                ];
+                needUpdate = true;
+            }
+
             if (needUpdate) {
                 this.sectionCtrl.update(this.section);
             }
@@ -568,7 +579,7 @@ export default {
 <style lang="scss" scoped>
 .slider-section {
     position: relative;
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
 
     &::v-deep {
         .background {
@@ -746,20 +757,11 @@ export default {
                 }
             }
         }
-
-        .icons {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
     }
 }
 
 @media only screen and (max-width: 1100px) {
     .slider-section {
-        height: auto;
-
         &::v-deep {
             .content-container {
                 .left-container {
@@ -791,10 +793,6 @@ export default {
                 .right-container {
                     height: 250px;
                 }
-            }
-
-            .icons {
-                position: relative;
             }
         }
     }

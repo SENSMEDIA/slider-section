@@ -664,6 +664,7 @@ export default {
                                 div {
                                     margin: 0 5px;
                                     color: rgba(52, 60, 56, 0.32) !important;
+                                    transition: color 0.3s ease;
                                 }
                             }
                         }
@@ -697,10 +698,14 @@ export default {
                     top: 50%;
                     transform: translateY(-50%);
 
-                    display: none;
+                    z-index: 0;
+                    opacity: 0;
+
+                    transition: opacity 0.3s ease;
 
                     &.active {
-                        display: block;
+                        z-index: 10;
+                        opacity: 1;
                     }
 
                     /*
